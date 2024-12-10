@@ -9,7 +9,8 @@ This README provides the steps to set up and run localization for the Tori robot
 To run localization, use the following command:
 
 ```bash
-ros2 launch tori_bringup tori.launch.py
+ros2 launch tori_bringup tori.launch.py 
+```bash
 
 Running this launch file should replace the following commands:
 
