@@ -20,5 +20,3 @@ To run localization, use the following command:
 
 ```
 ros2 launch tori_bringup tori.launch.py 
-
-
