@@ -4,7 +4,7 @@
 
 This README provides the steps to set up and run localization for the Tori robot.
 
-Running this launch file should replace the following commands:
+Running the tori.launch.py file should replace the following commands:
 
 ``` ros2 launch sllidar_ros2 view_sllidar_s1_launch.py```
 
