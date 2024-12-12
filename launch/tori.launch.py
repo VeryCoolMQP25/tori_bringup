@@ -20,15 +20,16 @@ def generate_launch_description():
         output='screen',
     )
 
-    lidar_launch_path = os.path.join(
-        '/home/suki/ros2_ws/src/sllidar_ros2/launch', 'view_sllidar_s1_launch.py' # jake change path here
+    lidar_launch_path = os.path.join(os.getenv("ros_ws_path"),
+        'src/sllidar_ros2/launch', 'view_sllidar_s1_launch.py'
     )
     lidar_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(lidar_launch_path)
     )
-
+    collision_launch_path = os.path.join("/opt/ros/humble/share/nav2_collision_monitor/launch/collision_monitor_node.launch.py")
+    collision_monitor_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(collision_launch_path))
     nav2_bringup_path = os.path.join(
-        '/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py'
+        '/opt/ros/humble/share/nav2_bringup/launch', 'bringup_launch.py'
     )
     localization_launch = TimerAction(
         period=3.0,  # localization node launched after 3 sec delay to ensure map server has enough time to load map into Rviz
@@ -37,7 +38,7 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource(nav2_bringup_path),
                 launch_arguments={
                     'use_sim_time': 'false',
-                    'map': '/home/suki/map_Dec7-1.yaml'  # change path here too
+                    'map': input("Enter map yaml path: ")
                 }.items()
             )
         ]
@@ -46,6 +47,7 @@ def generate_launch_description():
     ld.add_action(odom_tf_publisher)
     ld.add_action(lidar_launch)
     ld.add_action(rviz_node)
-    ld.add_action(localization_launch) 
+    ld.add_action(localization_launch)
+    ld.add_action(collision_monitor_launch) 
 
     return ld
