@@ -24,4 +24,8 @@ To run localization, use the following commands:
 
 ```agent```
 
+## Navigation Setup for Tori
 
+To run navigation, use the following command along with the ones under localization:
+
+``` ros2 launch nav2_bringup localization_launch.py```
