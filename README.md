@@ -16,7 +16,9 @@ Running the tori.launch.py file should replace the following commands:
 
 ## Localization Setup for Tori
 
-To run localization, use the following command:
+To run localization, use the following commands:
 
-```
-ros2 launch tori_bringup tori.launch.py 
+``` ros2 launch tori_bringup tori.launch.py ```
+``` ros2 launch tori_bringup tori.launch.py ```
+```ros2 run tf2_ros static_transform_publisher .14 0 1.12 0 0 0  base_link laser```
+
