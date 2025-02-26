@@ -20,8 +20,8 @@ def generate_launch_description():
         output='screen',
     )
 
-    lidar_launch_path = os.path.join(os.getenv("ros_ws_path"),
-        'src/sllidar_ros2/launch', 'view_sllidar_s1_launch.py'
+    lidar_launch_path = os.path.join("/home/tori/ros2_ws",
+        'install/sllidar_ros2/share/sllidar_ros2/launch', 'view_sllidar_s1_launch.py'
     )
     lidar_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(lidar_launch_path)
@@ -38,7 +38,7 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource(nav2_bringup_path),
                 launch_arguments={
                     'use_sim_time': 'false',
-                    'map': input("Enter map yaml path: ")
+                    'map': "/home/tori/Maps/floor4.yaml"
                 }.items()
             )
         ]
