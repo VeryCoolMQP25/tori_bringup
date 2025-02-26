@@ -29,7 +29,7 @@ def generate_launch_description():
     collision_launch_path = os.path.join("/opt/ros/humble/share/nav2_collision_monitor/launch/collision_monitor_node.launch.py")
     collision_monitor_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(collision_launch_path))
     nav2_bringup_path = os.path.join(
-        '/opt/ros/humble/share/nav2_bringup/launch', 'bringup_launch.py'
+        '/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py'
     )
     localization_launch = TimerAction(
         period=3.0,  # localization node launched after 3 sec delay to ensure map server has enough time to load map into Rviz
