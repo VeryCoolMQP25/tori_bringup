@@ -21,7 +21,7 @@ def generate_launch_description():
     )
 
     lidar_launch_path = os.path.join(
-        '/home/suki/ros2_ws/src/sllidar_ros2/launch', 'view_sllidar_s1_launch.py' # jake change path here
+        '/home/tori/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/launch', 'view_sllidar_s1_launch.py' # jake change path here
     )
     lidar_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(lidar_launch_path)
@@ -37,7 +37,7 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource(nav2_bringup_path),
                 launch_arguments={
                     'use_sim_time': 'false',
-                    'map': '/home/suki/map_Dec7-1.yaml'  # change path here too
+                    'map': '/home/tori/Maps/floor4.yaml'  # change path here too
                 }.items()
             )
         ]
