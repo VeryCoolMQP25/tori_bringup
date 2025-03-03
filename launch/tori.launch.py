@@ -37,7 +37,7 @@ def generate_launch_description():
                 PythonLaunchDescriptionSource(nav2_bringup_path),
                 launch_arguments={
                     'use_sim_time': 'false',
-                    'map': '/home/tori/Maps/floor4.yaml'  # change path here too
+                    'map': '/home/tori/Maps/map_Unity1.yaml'  # change path here too
                 }.items()
             )
         ]
