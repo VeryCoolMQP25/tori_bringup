@@ -14,12 +14,12 @@ def generate_launch_description():
         output='screen'
     )
 
-    # Goal Pose Filter Node
-    goal_pose_filter = Node(
-        package='goal_pose_filter', 
-        executable='goal_pose_filter',
-        output='screen'
-    )
+    # # Goal Pose Filter Node
+    # goal_pose_filter = Node(
+    #     package='goal_pose_filter', 
+    #     executable='goal_pose_filter',
+    #     output='screen'
+    # )
 
     # RViz Node
     rviz_node = Node(
@@ -36,12 +36,12 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(lidar_launch_path)
     )
 
-    # Map Loader Node
-    map_loader_node = Node(
-        package='map_loader',
-        executable='map_loader',
-        output='screen'
-    )
+    # # Map Loader Node
+    # map_loader_node = Node(
+    #     package='map_loader',
+    #     executable='map_loader',
+    #     output='screen'
+    # )
 
     # Localization Launch
     nav2_bringup_path = os.path.join(
