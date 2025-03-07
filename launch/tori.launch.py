@@ -14,6 +14,13 @@ def generate_launch_description():
         output='screen'
     )
 
+    # Goal Pose Filter Node
+    goal_pose_filter = Node(
+        package='goal_pose_filter', 
+        executable='goal_pose_filter',
+        output='screen'
+    )
+
     # RViz Node
     rviz_node = Node(
         package='rviz2',
@@ -53,11 +60,17 @@ def generate_launch_description():
         ]
     )
 
+    # Collision Monitor Launch
+    collision_launch_path = os.path.join("/opt/ros/humble/share/nav2_collision_monitor/launch/collision_monitor_node.launch.py")
+    collision_monitor_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(collision_launch_path))
+
     # Add nodes to launch description
     ld.add_action(odom_tf_publisher)
+    ld.add_action(goal_pose_filter)
     ld.add_action(lidar_launch)
     ld.add_action(rviz_node)
     ld.add_action(map_loader_node)
     ld.add_action(localization_launch)
+    ld.add_action(collision_monitor_launch)
 
     return ld
