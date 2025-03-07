@@ -14,12 +14,14 @@ def generate_launch_description():
         output='screen'
     )
 
+    # RViz Node
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
         output='screen',
     )
 
+    # LiDAR Launch
     lidar_launch_path = os.path.join(
         '/home/tori/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/launch', 'view_sllidar_s1_launch.py' # jake change path here
     )
@@ -27,6 +29,14 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(lidar_launch_path)
     )
 
+    # Map Loader Node
+    map_loader_node = Node(
+        package='map_loader',
+        executable='map_loader',
+        output='screen'
+    )
+
+    # Localization Launch
     nav2_bringup_path = os.path.join(
         '/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py'
     )
@@ -43,9 +53,11 @@ def generate_launch_description():
         ]
     )
 
+    # Add nodes to launch description
     ld.add_action(odom_tf_publisher)
     ld.add_action(lidar_launch)
     ld.add_action(rviz_node)
-    ld.add_action(localization_launch) 
+    ld.add_action(map_loader_node)
+    ld.add_action(localization_launch)
 
     return ld
