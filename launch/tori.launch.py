@@ -66,10 +66,10 @@ def generate_launch_description():
 
     # Add nodes to launch description
     ld.add_action(odom_tf_publisher)
-    ld.add_action(goal_pose_filter)
+    # ld.add_action(goal_pose_filter)
     ld.add_action(lidar_launch)
     ld.add_action(rviz_node)
-    ld.add_action(map_loader_node)
+    # ld.add_action(map_loader_node)
     ld.add_action(localization_launch)
     ld.add_action(collision_monitor_launch)
 
