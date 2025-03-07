@@ -60,10 +60,6 @@ def generate_launch_description():
         ]
     )
 
-    # Collision Monitor Launch
-    collision_launch_path = os.path.join("/opt/ros/humble/share/nav2_collision_monitor/launch/collision_monitor_node.launch.py")
-    collision_monitor_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(collision_launch_path))
-
     # Add nodes to launch description
     ld.add_action(odom_tf_publisher)
     # ld.add_action(goal_pose_filter)
@@ -71,6 +67,5 @@ def generate_launch_description():
     ld.add_action(rviz_node)
     # ld.add_action(map_loader_node)
     ld.add_action(localization_launch)
-    ld.add_action(collision_monitor_launch)
 
     return ld
