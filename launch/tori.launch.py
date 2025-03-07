@@ -66,6 +66,6 @@ def generate_launch_description():
     ld.add_action(lidar_launch)
     ld.add_action(rviz_node)
     # ld.add_action(map_loader_node)
-    ld.add_action(localization_launch)
+    # ld.add_action(localization_launch)
 
     return ld
