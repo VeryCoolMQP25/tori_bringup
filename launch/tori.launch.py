@@ -31,7 +31,7 @@ def generate_launch_description():
         '/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py'
     )
     localization_launch = TimerAction(
-        period=3.0,  # localization node launched after 3 sec delay to ensure map server has enough time to load map into Rviz
+        period=5.0,  # localization node launched after 3 sec delay to ensure map server has enough time to load map into Rviz
         actions=[
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(nav2_bringup_path),
