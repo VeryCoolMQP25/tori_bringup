@@ -1,5 +1,7 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, TimerAction
+from launch.actions import IncludeLaunchDescription, RegisterEventHandler
+from launch.actions import LogInfo
+from launch.event_handlers import OnProcessExit
 from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 import os
@@ -14,13 +16,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    # # Goal Pose Filter Node
-    # goal_pose_filter = Node(
-    #     package='goal_pose_filter', 
-    #     executable='goal_pose_filter',
-    #     output='screen'
-    # )
-
     # RViz Node
     rviz_node = Node(
         package='rviz2',
@@ -30,42 +25,39 @@ def generate_launch_description():
 
     # LiDAR Launch
     lidar_launch_path = os.path.join(
-        '/home/tori/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/launch', 'view_sllidar_s1_launch.py' # jake change path here
+        '/home/tori/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/launch', 
+        'view_sllidar_s1_launch.py'
     )
     lidar_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(lidar_launch_path)
     )
 
-    # # Map Loader Node
-    # map_loader_node = Node(
-    #     package='map_loader',
-    #     executable='map_loader',
-    #     output='screen'
-    # )
-
-    # Localization Launch
+    # Localization Launch (Triggered by rviz exiting)
     nav2_bringup_path = os.path.join(
         '/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py'
     )
-    localization_launch = TimerAction(
-        period=5.0,  # localization node launched after 3 sec delay to ensure map server has enough time to load map into Rviz
-        actions=[
-            IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(nav2_bringup_path),
-                launch_arguments={
-                    'use_sim_time': 'false',
-                    'map': '/home/tori/Maps/map_Unity1.yaml'  # change path here too
-                }.items()
-            )
-        ]
+    localization_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(nav2_bringup_path),
+        launch_arguments={
+            'use_sim_time': 'false',
+            'map': '/home/tori/Maps/map_Unity1.yaml'
+        }.items()
+    )
+
+    localization_trigger = RegisterEventHandler( # triggers localization after rviz exits
+        OnProcessExit(
+            target_action=rviz_node,
+            on_exit=[
+                LogInfo(msg="RViz finished loading. Starting Localization..."),
+                localization_launch
+            ]
+        )
     )
 
     # Add nodes to launch description
     ld.add_action(odom_tf_publisher)
-    # ld.add_action(goal_pose_filter)
     ld.add_action(lidar_launch)
     ld.add_action(rviz_node)
-    # ld.add_action(map_loader_node)
-    # ld.add_action(localization_launch)
+    ld.add_action(localization_trigger)
 
     return ld
