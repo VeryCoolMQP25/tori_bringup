@@ -24,14 +24,14 @@ def generate_launch_description():
         output='screen',
     )
 
-    # LiDAR Launch
-    lidar_launch_path = os.path.join(
-        '/home/tori/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/launch', 
-        'view_sllidar_s1_launch.py'
-    )
-    lidar_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(lidar_launch_path)
-    )
+    # # LiDAR Launch
+    # lidar_launch_path = os.path.join(
+    #     '/home/tori/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/launch', 
+    #     'view_sllidar_s1_launch.py'
+    # )
+    # lidar_launch = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource(lidar_launch_path)
+    # )
 
     # Map Ready Check Node
     map_ready_check = Node(
@@ -63,7 +63,7 @@ def generate_launch_description():
 
     # Add nodes to launch description
     ld.add_action(odom_tf_publisher)
-    ld.add_action(lidar_launch)
+    # ld.add_action(lidar_launch)
     ld.add_action(rviz_node)
     ld.add_action(map_ready_check)
     ld.add_action(localization_trigger)
