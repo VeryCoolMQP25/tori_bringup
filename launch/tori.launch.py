@@ -1,10 +1,11 @@
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, RegisterEventHandler
 from launch.actions import LogInfo
-from launch.event_handlers import OnProcessExit
+from launch.event_handlers import OnExecutionComplete
 from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 import os
+# from map_ready_check import MapReadyEvent  # Import custom event
 
 def generate_launch_description():
     ld = LaunchDescription()
@@ -32,7 +33,14 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(lidar_launch_path)
     )
 
-    # Localization Launch (Triggered by rviz exiting)
+    # Map Ready Check Node
+    map_ready_check = Node(
+        package='map_ready_check',
+        executable='map_ready_check',
+        output='screen'
+    )
+
+    # Localization Launch
     nav2_bringup_path = os.path.join(
         '/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py'
     )
@@ -40,17 +48,16 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(nav2_bringup_path),
         launch_arguments={
             'use_sim_time': 'false',
-            'map': '/home/tori/Maps/map_Unity1.yaml'
+            'map': '/home/suki/ros2_ws/src/Unity-Coordinates/map_Unity1.yaml'
         }.items()
     )
 
-    localization_trigger = RegisterEventHandler( # triggers localization after rviz exits
-        OnProcessExit(
-            target_action=rviz_node,
-            on_exit=[
-                LogInfo(msg="RViz finished loading. Starting Localization..."),
-                localization_launch
-            ]
+    # Event to trigger localization after map is confirmed
+    localization_trigger = RegisterEventHandler(
+        OnExecutionComplete(
+            target_action=map_ready_check,
+            on_event=MapReadyEvent(),
+            actions=[localization_launch]
         )
     )
 
@@ -58,6 +65,8 @@ def generate_launch_description():
     ld.add_action(odom_tf_publisher)
     ld.add_action(lidar_launch)
     ld.add_action(rviz_node)
+    ld.add_action(map_ready_check)
     ld.add_action(localization_trigger)
 
     return ld
+
