@@ -1,11 +1,11 @@
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, RegisterEventHandler
-from launch.actions import LogInfo
+from launch.actions import IncludeLaunchDescription, RegisterEventHandler, EmitEvent
 from launch.event_handlers import OnExecutionComplete
 from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 import os
-# from map_ready_check import MapReadyEvent  # Import custom event
+
+from map_ready_check import MapReadyEvent  # Import custom event
 
 def generate_launch_description():
     ld = LaunchDescription()
@@ -24,7 +24,7 @@ def generate_launch_description():
         output='screen',
     )
 
-    # # LiDAR Launch
+    # LiDAR Launch
     # lidar_launch_path = os.path.join(
     #     '/home/tori/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/launch', 
     #     'view_sllidar_s1_launch.py'
@@ -48,7 +48,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(nav2_bringup_path),
         launch_arguments={
             'use_sim_time': 'false',
-            'map': '/home/suki/ros2_ws/src/Unity-Coordinates/map_Unity1.yaml'
+            'map': '/home/tori/Maps/map_Unity1.yaml'
         }.items()
     )
 
@@ -56,7 +56,6 @@ def generate_launch_description():
     localization_trigger = RegisterEventHandler(
         OnExecutionComplete(
             target_action=map_ready_check,
-            on_event=MapReadyEvent(),
             actions=[localization_launch]
         )
     )
@@ -69,4 +68,3 @@ def generate_launch_description():
     ld.add_action(localization_trigger)
 
     return ld
-
