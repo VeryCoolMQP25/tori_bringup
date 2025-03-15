@@ -15,11 +15,11 @@ def generate_launch_description():
     )
 
     # # Goal Pose Filter Node
-    # goal_pose_filter = Node(
-    #     package='goal_pose_filter', 
-    #     executable='goal_pose_filter',
-    #     output='screen'
-    # )
+    goal_pose_filter = Node(
+        package='goal_pose_filter', 
+        executable='goal_pose_filter',
+        output='screen'
+    )
 
     # RViz Node
     rviz_node = Node(
@@ -37,11 +37,11 @@ def generate_launch_description():
     )
 
     # # Map Loader Node
-    # map_loader_node = Node(
-    #     package='map_loader',
-    #     executable='map_loader',
-    #     output='screen'
-    # )
+    map_loader_node = Node(
+        package='map_loader',
+        executable='map_loader',
+        output='screen'
+    )
 
     # Localization Launch
     nav2_bringup_path = os.path.join(
@@ -62,10 +62,10 @@ def generate_launch_description():
 
     # Add nodes to launch description
     ld.add_action(odom_tf_publisher)
-    # ld.add_action(goal_pose_filter)
+    ld.add_action(goal_pose_filter)
     ld.add_action(lidar_launch)
     # ld.add_action(rviz_node)
-    # ld.add_action(map_loader_node)
+    ld.add_action(map_loader_node)
     ld.add_action(localization_launch)
 
     return ld
