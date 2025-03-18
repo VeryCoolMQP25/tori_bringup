@@ -14,7 +14,7 @@ Running the tori.launch.py file should replace the following commands:
 
 ## Localization Setup for Tori
 
-To run localization, use the following commands:
+To run localization (using a personal device), use the following commands:
 
 ``` ros2 launch tori_bringup tori.launch.py ```
 
@@ -24,6 +24,11 @@ To run localization, use the following commands:
 
 ``` rviz2```
 
+To run localization on the Jetson, use the following commands:
+
+``` ros2 launch tori_bringup tori.launch.py ```
+
+``` rviz2```
 
 ## Navigation Setup for Tori
 
