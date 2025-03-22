@@ -1,7 +1,8 @@
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, TimerAction
 from launch_ros.actions import Node
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.launch_description_sources import PythonLaunchDescriptionSource, AnyLaunchDescriptionSource
+from ament_index_python.packages import get_package_share_directory
 import os
 
 def generate_launch_description():
@@ -30,11 +31,19 @@ def generate_launch_description():
 
     # LiDAR Launch
     lidar_launch_path = os.path.join(
-        '/home/tori/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/launch', 'view_sllidar_s1_launch.py' # jake change path here
+        '/home/tori/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/launch', 'sllidar_s1_launch.py' # jake change path here
     )
     lidar_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(lidar_launch_path)
     )
+    rosbridge_launch_file = os.path.join(
+        get_package_share_directory("rosbridge_server"),
+        "launch",
+        "rosbridge_websocket_launch.xml"
+    )
+    rosbridge_launch =  IncludeLaunchDescription(
+            AnyLaunchDescriptionSource(rosbridge_launch_file)
+        )
 
     # # Map Loader Node
     map_loader_node = Node(
@@ -44,18 +53,22 @@ def generate_launch_description():
     )
 
     # Localization Launch
-    nav2_bringup_path = os.path.join(
-        '/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py'
-    )
-    localization_launch = TimerAction(
-        period=2.0,  # localization node launched after 2 sec delay to ensure map server has enough time to load map into Rviz
+    nav2_loc_bringup_path = os.path.join('/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py')
+    
+    localization_launch = IncludeLaunchDescription(
+                    PythonLaunchDescriptionSource(nav2_loc_bringup_path),
+                    launch_arguments={
+                        'use_sim_time': 'false',
+                        'map': '/home/tori/Maps/map_Unity1.yaml'  # change path here too
+                    }.items())
+
+    nav2_nav_bringup_path = os.path.join('/opt/ros/humble/share/nav2_bringup/launch', 'navigation_launch.py')
+    
+    navigation_launch = TimerAction(
+        period=4.0,  # wait for localization to come up
         actions=[
             IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(nav2_bringup_path),
-                launch_arguments={
-                    'use_sim_time': 'false',
-                    'map': '/home/tori/Maps/map_Unity1.yaml'  # change path here too
-                }.items()
+                PythonLaunchDescriptionSource(nav2_nav_bringup_path)
             )
         ]
     )
@@ -66,6 +79,8 @@ def generate_launch_description():
     ld.add_action(lidar_launch)
     # ld.add_action(rviz_node)
     ld.add_action(map_loader_node)
+    ld.add_action(rosbridge_launch)
     ld.add_action(localization_launch)
+    ld.add_action(navigation_launch)
 
     return ld
