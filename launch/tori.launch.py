@@ -37,7 +37,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(lidar_launch_path),
         launch_arguments={
             'serial_port': '/dev/LiDAR'
-        }
+        }.items()
     )
     rosbridge_launch_file = os.path.join(
         get_package_share_directory("rosbridge_server"),
@@ -67,9 +67,9 @@ def generate_launch_description():
     localization_launch = IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(nav2_loc_bringup_path),
                     launch_arguments={
-                        'use_sim_time': 'false',
                         'map': '/home/tori/Maps/map_Unity1.yaml'  # change path here too
-                    }.items())
+                    }.items()
+                    )
 
     nav2_nav_bringup_path = os.path.join('/opt/ros/humble/share/nav2_bringup/launch', 'navigation_launch.py')
     
