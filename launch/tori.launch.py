@@ -55,6 +55,12 @@ def generate_launch_description():
         output='screen'
     )
 
+    battery_node = Node(
+                package='battery_monitor',
+                executable='battery_monitor',
+                output='screen'
+            )
+
     # Localization Launch
     nav2_loc_bringup_path = os.path.join('/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py')
     
@@ -80,6 +86,7 @@ def generate_launch_description():
     ld.add_action(odom_tf_publisher)
     ld.add_action(goal_pose_filter)
     ld.add_action(lidar_launch)
+    ld.add_action(battery_node)
     # ld.add_action(rviz_node)
     ld.add_action(map_loader_node)
     ld.add_action(rosbridge_launch)
