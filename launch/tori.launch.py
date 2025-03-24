@@ -34,7 +34,10 @@ def generate_launch_description():
         '/home/tori/ros2_ws/install/sllidar_ros2/share/sllidar_ros2/launch', 'sllidar_s1_launch.py' # jake change path here
     )
     lidar_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(lidar_launch_path)
+        PythonLaunchDescriptionSource(lidar_launch_path),
+        launch_arguments={
+            'serial_port': '/dev/LiDAR'
+        }
     )
     rosbridge_launch_file = os.path.join(
         get_package_share_directory("rosbridge_server"),
