@@ -89,7 +89,7 @@ def generate_launch_description():
     ld.add_action(battery_node)
     # ld.add_action(rviz_node)
     ld.add_action(map_loader_node)
-    # ld.add_action(rosbridge_launch)
+    ld.add_action(rosbridge_launch)
     ld.add_action(localization_launch)
     ld.add_action(navigation_launch)
 
