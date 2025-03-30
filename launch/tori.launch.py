@@ -62,13 +62,11 @@ def generate_launch_description():
         executable='map_loader',
         output='screen'
     )
-
     battery_node = Node(
-                package='battery_monitor',
-                executable='battery_monitor',
-                output='screen'
-            )
-
+            package='battery_monitor',
+            executable='battery_monitor',
+            output='screen'
+        )
     # Localization Launch
     nav2_loc_bringup_path = os.path.join('/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py')
     
@@ -89,7 +87,6 @@ def generate_launch_description():
             )
         ]
     )
-
     # Add nodes to launch description
     ld.add_action(odom_tf_publisher)
     ld.add_action(goal_pose_filter)
