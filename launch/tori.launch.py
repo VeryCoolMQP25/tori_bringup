@@ -22,6 +22,14 @@ def generate_launch_description():
         output='screen'
     )
 
+    
+    # # Check goal dist
+    check_goal_dist = Node(
+        package='check_goal_proximity', 
+        executable='check_goal_proximity',
+        output='screen'
+    )
+
     # RViz Node
     rviz_node = Node(
         package='rviz2',
@@ -85,6 +93,7 @@ def generate_launch_description():
     # Add nodes to launch description
     ld.add_action(odom_tf_publisher)
     ld.add_action(goal_pose_filter)
+    ld.add_action(check_goal_dist)
     ld.add_action(lidar_launch)
     ld.add_action(battery_node)
     # ld.add_action(rviz_node)
