@@ -30,6 +30,25 @@ def generate_launch_description():
         output='screen'
     )
 
+    # Elevator State manager
+    transition_manager = Node(
+        package='elevator_transitions',
+        executable='transitions',
+        output='screen'
+    )
+
+    elevator_orchestrator = Node(
+        package='elevator_orchestrator',
+        executable='orchestrator',
+        output='screen'
+    )
+    
+     vision = Node(
+        package='vision',
+        executable='button_coordinate_publisher',
+        output='screen'
+    )
+
     # RViz Node
     rviz_node = Node(
         package='rviz2',
@@ -62,11 +81,11 @@ def generate_launch_description():
         executable='map_loader',
         output='screen'
     )
-    battery_node = Node(
-            package='battery_monitor',
-            executable='battery_monitor',
-            output='screen'
-        )
+    # battery_node = Node(
+            # package='battery_monitor',
+            # executable='battery_monitor',
+            # output='screen'
+        # )
     # Localization Launch
     nav2_loc_bringup_path = os.path.join('/opt/ros/humble/share/nav2_bringup/launch', 'localization_launch.py')
     
@@ -92,11 +111,12 @@ def generate_launch_description():
     ld.add_action(goal_pose_filter)
     ld.add_action(check_goal_dist)
     ld.add_action(lidar_launch)
-    ld.add_action(battery_node)
-    # ld.add_action(rviz_node)
+    # ld.add_action(battery_node)
     ld.add_action(map_loader_node)
-    # ld.add_action(rosbridge_launch)
     ld.add_action(localization_launch)
     ld.add_action(navigation_launch)
+    ld.add_action(transition_manager)
+    ld.add_action(elevator_orchestrator)
+    ld.add_action(vision)
 
     return ld

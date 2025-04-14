@@ -1,0 +1,59 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/tori/ros2_ws/src/tori_bringup/build/tori_bringup
+-- Install configuration: ""
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/COLCON_IGNORE
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/_local_setup_util_ps1.py
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/local_setup.bash
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/local_setup.sh
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/local_setup.zsh
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/setup.zsh
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/setup.bash
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/.colcon_install_layout
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/local_setup.ps1
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/_local_setup_util_sh.py
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/setup.sh
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/install/setup.ps1
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/log
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/log/COLCON_IGNORE
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/log/build_2024-12-09_19-37-01
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/log/build_2024-12-09_19-37-01/events.log
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/log/build_2024-12-09_19-37-01/logger_all.log
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/log/latest_build
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/log/latest
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/build
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/build/COLCON_IGNORE
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/build/.built_by
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/tori.launch.py
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/launch/demo.launch.py
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/ament_index/resource_index/package_run_dependencies/tori_bringup
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/ament_index/resource_index/parent_prefix_path/tori_bringup
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/environment/ament_prefix_path.sh
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/environment/ament_prefix_path.dsv
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/environment/path.sh
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/environment/path.dsv
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/local_setup.bash
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/local_setup.sh
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/local_setup.zsh
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/local_setup.dsv
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/package.dsv
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/ament_index/resource_index/packages/tori_bringup
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/cmake/tori_bringupConfig.cmake
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/cmake/tori_bringupConfig-version.cmake
+-- Installing: /home/tori/ros2_ws/src/tori_bringup/install/tori_bringup/share/tori_bringup/package.xml
