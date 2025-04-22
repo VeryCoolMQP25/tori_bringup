@@ -43,7 +43,7 @@ def generate_launch_description():
         output='screen'
     )
     
-     vision = Node(
+    vision = Node(
         package='vision',
         executable='button_coordinate_publisher',
         output='screen'
@@ -116,7 +116,7 @@ def generate_launch_description():
     ld.add_action(localization_launch)
     ld.add_action(navigation_launch)
     ld.add_action(transition_manager)
-    ld.add_action(elevator_orchestrator)
-    ld.add_action(vision)
+    # ld.add_action(elevator_orchestrator)
+    # ld.add_action(vision)
 
     return ld
