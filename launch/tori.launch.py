@@ -30,6 +30,13 @@ def generate_launch_description():
         output='screen'
     )
 
+    # Light commander
+    light_commander = Node(
+        package='LightCommander', 
+        executable='light_commander',
+        output='screen'
+    )
+
     # Elevator State manager
     transition_manager = Node(
         package='elevator_transitions',
@@ -110,6 +117,7 @@ def generate_launch_description():
     ld.add_action(odom_tf_publisher)
     ld.add_action(goal_pose_filter)
     ld.add_action(check_goal_dist)
+    ld.add_action(light_commander)
     ld.add_action(lidar_launch)
     # ld.add_action(battery_node)
     ld.add_action(map_loader_node)
