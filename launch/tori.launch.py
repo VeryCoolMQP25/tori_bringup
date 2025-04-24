@@ -51,6 +51,13 @@ def generate_launch_description():
         output='screen'
     )
 
+    # Enter elevator
+    enter_elevator = Node(
+        package='enter_elevator', 
+        executable='enter_elevator',
+        output='screen'
+    )
+    
     elevator_orchestrator = Node(
         package='elevator_orchestrator',
         executable='orchestrator',
@@ -126,7 +133,7 @@ def generate_launch_description():
     ld.add_action(check_goal_dist)
     ld.add_action(light_commander)
     ld.add_action(lidar_launch)
-    # ld.add_action(light_transitioner) # now handled by transition_manager
+    ld.add_action(enter_elevator)
     # ld.add_action(battery_node)
     ld.add_action(map_loader_node)
     ld.add_action(localization_launch)
