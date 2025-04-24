@@ -133,7 +133,7 @@ def generate_launch_description():
     ld.add_action(check_goal_dist)
     ld.add_action(light_commander)
     ld.add_action(lidar_launch)
-    ld.add_action(enter_elevator)
+    # ld.add_action(enter_elevator)
     # ld.add_action(battery_node)
     ld.add_action(map_loader_node)
     ld.add_action(localization_launch)
